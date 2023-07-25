@@ -27,76 +27,88 @@ export default function SignIn() {
         }
     }
     return (
-        <View
-            style={{
-                justifyContent: "center",
-                alignItems: "center",
-                flex: 1,
-                backgroundColor: "#433069",
-            }}
+        <ImageBackground
+            resizeMode="cover"
+            source={require("../assets/bg_login.jpg")}
+            style={{ flex: 1 }}
         >
-            <Text
+            <View
                 style={{
-                    color: "#fffffd",
-                    fontSize: 24,
-                    marginBottom: 20,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flex: 1,
+                    // backgroundColor: "#433069",
                 }}
             >
-                Welcome to Universe
-            </Text>
-            <Image
-                source={require("../assets/logo.png")}
-                style={{ width: 180, height: 180 }}
-                resizeMode="cover"
-            />
-            <View style={{ marginTop: 20 }}>
-                <TextInput
-                    placeholder="Email"
-                    value={email}
-                    onChangeText={setEmail}
+                <Text
                     style={{
-                        borderBottomColor: colors.primary,
-                        borderBottomWidth: 2,
-                        width: 200,
-                        color: "#fbafe0"
+                        color: "#fffffd",
+                        fontSize: 24,
+                        marginBottom: 20,
                     }}
-                />
-                <TextInput
-                    placeholder="Password"
-                    value={password}
-                    onChangeText={setPassword}
-                    secureTextEntry={true}
-                    style={{
-                        borderBottomColor: colors.primary,
-                        borderBottomWidth: 2,
-                        width: 200,
-                        marginTop: 20,
-                        color: "#fbafe0"
-                    }}
+                >
+                    Welcome to Universe
+                </Text>
+                <Image
+                    source={require("../assets/logo_login.png")}
+                    style={{ width: 180, height: 180 }}
+                    resizeMode="cover"
                 />
                 <View style={{ marginTop: 20 }}>
-                    <Button
-                        title={mode === "signUp" ? "Sign Up" : "Sign in"}
-                        disabled={!password || !email}
-                        color={colors.secondary}
-                        onPress={handlePress}
+                    <TextInput
+                        placeholder="Email"
+                        placeholderTextColor="green"
+                        value={email}
+                        onChangeText={setEmail}
+                        style={{
+                            borderBottomColor: colors.primary,
+                            borderBottomWidth: 2,
+                            width: 250,
+                            color: "#fbafe0",
+                            backgroundColor: "white",
+                            borderRadius: 3
+                        }}
                     />
+                    <TextInput
+                        placeholder="Password"
+                        placeholderTextColor="green"
+                        value={password}
+                        onChangeText={setPassword}
+                        secureTextEntry={true}
+                        style={{
+                            borderBottomColor: colors.primary,
+                            borderBottomWidth: 2,
+                            width: 250,
+                            marginTop: 20,
+                            color: "#fbafe0",
+                            backgroundColor: "white",
+                            borderRadius: 3
+                        }}
+                    />
+                    <View style={{ marginTop: 20 }}>
+                        <Button
+                            title={mode === "signUp" ? "Sign Up" : "Sign in"}
+                            disabled={!password || !email}
+                            color={colors.secondary}
+                            onPress={handlePress}
+                        />
+                    </View>
+                    <TouchableOpacity
+                        style={{ marginTop: 15, alignItems: "center" }}
+                        onPress={() =>
+                            mode === "signUp"
+                                ? setMode("signIn")
+                                : setMode("signUp")
+                        }
+                    >
+                        <Text style={{ color: "white", fontWeight: "400" }}>
+                            {mode === "signUp"
+                                ? "Already have an account? Sign in"
+                                : "Don't have an account? Sign Up"}
+                        </Text>
+                    </TouchableOpacity>
                 </View>
-                <TouchableOpacity
-                    style={{ marginTop: 15 }}
-                    onPress={() =>
-                        mode === "signUp"
-                            ? setMode("signIn")
-                            : setMode("signUp")
-                    }
-                >
-                    <Text style={{ color: colors.secondaryText }}>
-                        {mode === "signUp"
-                            ? "Already have an account? Sign in"
-                            : "Don't have an account? Sign Up"}
-                    </Text>
-                </TouchableOpacity>
             </View>
-        </View>
+        </ImageBackground>
     );
 }

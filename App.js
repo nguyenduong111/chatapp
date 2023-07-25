@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Text, View, LogBox } from "react-native";
+import { Text, View, LogBox, Image, ImageBackground } from "react-native";
 import { useAssets } from "expo-asset";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
@@ -71,12 +71,40 @@ function App() {
                     )}
                     <Stack.Screen
                         name="home"
-                        options={{ title: "Home" }}
+                        // style={{colors: "green"}}
+                        options={{
+                            title: "Home",
+                            headerBackground: () => (
+                                <Image
+                                    source={require("./assets/logo_header.png")}
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        top: 0,
+                                        resizeMode: "cover",
+                                    }}
+                                />
+                            ),
+                        }}
                         component={Home}
                     />
                     <Stack.Screen
                         name="contacts"
-                        options={{ title: "Select Contacts" }}
+                        options={{
+                            title: "Select Contacts",
+                            headerBackground: () => (
+                                <Image
+                                    source={require("./assets/logo_select.png")}
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        top: 0,
+                                        resizeMode: "cover",
+                                        opacity: 0.3
+                                    }}
+                                />
+                            ),
+                        }}
                         component={Contacts}
                     />
                     <Stack.Screen
@@ -84,6 +112,18 @@ function App() {
                         component={Chat}
                         options={{
                             headerTitle: (props) => <ChatHeader {...props} />,
+                            headerBackground: () => (
+                                <Image
+                                    source={require("./assets/logo_chat.jpeg")}
+                                    style={{
+                                        width: "100%",
+                                        height: "100%",
+                                        top: 0,
+                                        resizeMode: "cover",
+                                        opacity: 0.3
+                                    }}
+                                />
+                            ),
                         }}
                     />
                 </Stack.Navigator>
@@ -124,7 +164,7 @@ function Home() {
                         backgroundColor: colors.white,
                     },
                     tabBarStyle: {
-                        backgroundColor: colors.foreground,
+                        backgroundColor: "#fdb2e9",
                     },
                 };
             }}
